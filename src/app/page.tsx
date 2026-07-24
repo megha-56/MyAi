@@ -102,7 +102,24 @@ export default function Chat() {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">MyAi Chatbot</h1>
+      
+      <div className="flex items-center gap-3 mb-4">
+         <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+           <path d="M50 5 Q61 40 95 50 Q61 60 50 95 Q39 60 5 50 Q39 40 50 5 Z" fill="#7C3AED"/>
+            
+              <circle cx="50" cy="50" r="6" fill="#DDD6FE" />
+                   
+           <path d="M85 6 Q88 13 96 16 Q88 19 85 26 Q82 19 74 16 Q82 13 85 6 Z"  fill="#DDD6FE"/>
+     
+    
+         </svg>
+         <h1 className="text-2xl font-bold">MyAi Chatbot</h1>
+ 
+      </div>
+
+
+
+
       <div className="space-y-3 mb-4 min-h-[300px]">
         {messages.map((m, i) => (
           <div key={i} className={m.role === 'user' ? 'text-right' : 'text-left'}>
