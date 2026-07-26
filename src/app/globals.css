@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f3fe;
-  --foreground: #3b3357;
+  --background: #ffffff;
+  --foreground: #4a4568;
 }
 
 @theme inline {
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #120b21;
-    --foreground: #ece7fb;
+    --background: #ffffff;
+    --foreground: #4a4568;
   }
 }
 
@@ -28,9 +28,9 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   background:
-    radial-gradient(1000px 560px at 10% -10%, rgba(167, 139, 250, 0.22), transparent 60%),
-    radial-gradient(880px 560px at 108% 0%, rgba(196, 181, 253, 0.20), transparent 55%),
-    radial-gradient(760px 760px at 50% 118%, rgba(139, 92, 246, 0.12), transparent 60%),
+    radial-gradient(1000px 560px at 8% -12%, rgba(167, 155, 231, 0.22), transparent 60%),
+    radial-gradient(880px 560px at 110% -4%, rgba(196, 188, 240, 0.20), transparent 58%),
+    radial-gradient(760px 760px at 50% 120%, rgba(179, 168, 232, 0.16), transparent 62%),
     var(--background);
   background-attachment: fixed;
 }
@@ -43,11 +43,11 @@ body {
   background: transparent;
 }
 .scroll-soft::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
+  background: rgba(150, 135, 220, 0.28);
   border-radius: 999px;
 }
 .scroll-soft::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.5);
+  background: rgba(150, 135, 220, 0.45);
 }
 
 /* Message entrance animation */
@@ -86,10 +86,10 @@ body {
 @keyframes glow {
   0%,
   100% {
-    filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.45));
+    filter: drop-shadow(0 0 6px rgba(167, 155, 231, 0.45));
   }
   50% {
-    filter: drop-shadow(0 0 14px rgba(167, 139, 250, 0.75));
+    filter: drop-shadow(0 0 14px rgba(196, 188, 240, 0.75));
   }
 }
 .animate-glow {
