@@ -1,8 +1,85 @@
 @import "tailwindcss";
 
+/* ---------- Light theme (soft violet) ---------- */
 :root {
   --background: #efeafb;
   --foreground: #4a4568;
+
+  --glow-1: rgba(167, 155, 231, 0.35);
+  --glow-2: rgba(196, 188, 240, 0.30);
+  --glow-3: rgba(179, 168, 232, 0.26);
+  --glow-logo-1: rgba(167, 155, 231, 0.45);
+  --glow-logo-2: rgba(196, 188, 240, 0.75);
+
+  --panel: rgba(245, 241, 253, 0.80);
+  --header: rgba(239, 233, 251, 0.80);
+  --border-soft: #e2daf6;
+  --border-strong: #ddd3f4;
+
+  --surface: #eae2fb;          /* assistant bubbles / avatars */
+  --chip-bg: #e7dffa;
+  --chip-border: #d7ccf0;
+  --chip-hover-bg: #ded2f7;
+  --chip-hover-border: #c4b6ec;
+  --input-bg: #f2eefc;
+
+  --accent: #9f92dc;           /* user bubble / send button */
+  --accent-hover: #8b7dd0;
+  --accent-ring: #ddd3f4;
+
+  --grad-a: #8f81cf;
+  --grad-b: #b3a8e8;
+
+  --text-strong: #453f63;
+  --text-title: #544d78;
+  --text-muted: #9a90bd;
+  --text-faint: #b4abcf;
+  --text-chip: #5f5591;
+  --dot: #a99ce0;
+
+  --scrollbar: rgba(150, 135, 220, 0.28);
+  --scrollbar-hover: rgba(150, 135, 220, 0.45);
+}
+
+/* ---------- Dark theme (deep purple violet) ---------- */
+.dark {
+  --background: #140b26;
+  --foreground: #e9e3fb;
+
+  --glow-1: rgba(139, 92, 246, 0.30);
+  --glow-2: rgba(124, 58, 237, 0.28);
+  --glow-3: rgba(91, 33, 182, 0.32);
+  --glow-logo-1: rgba(139, 92, 246, 0.55);
+  --glow-logo-2: rgba(167, 139, 250, 0.85);
+
+  --panel: rgba(38, 24, 66, 0.72);
+  --header: rgba(30, 19, 54, 0.80);
+  --border-soft: rgba(167, 139, 250, 0.14);
+  --border-strong: rgba(167, 139, 250, 0.22);
+
+  --surface: rgba(74, 52, 128, 0.42);
+  --chip-bg: rgba(88, 63, 150, 0.35);
+  --chip-border: rgba(167, 139, 250, 0.28);
+  --chip-hover-bg: rgba(112, 82, 186, 0.48);
+  --chip-hover-border: rgba(167, 139, 250, 0.55);
+  --input-bg: rgba(50, 33, 88, 0.60);
+
+  --accent: #7c3aed;
+  --accent-hover: #8b5cf6;
+  --accent-ring: rgba(124, 58, 237, 0.40);
+
+  --grad-a: #a78bfa;
+  --grad-b: #c4b5fd;
+
+  --text-strong: #ece7fb;
+  --text-title: #f0ebfd;
+  --text-muted: #b8a9e6;
+  --text-faint: #8b7cc0;
+  --text-chip: #d6ccf5;
+  --dot: #a78bfa;
+
+  --scrollbar: rgba(167, 139, 250, 0.35);
+  --scrollbar-hover: rgba(167, 139, 250, 0.55);
 }
 
 @theme inline {
@@ -10,13 +87,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #efeafb;
-    --foreground: #4a4568;
-  }
 }
 
 html,
@@ -28,11 +98,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   background:
-    radial-gradient(1000px 560px at 8% -12%, rgba(167, 155, 231, 0.35), transparent 60%),
-    radial-gradient(880px 560px at 110% -4%, rgba(196, 188, 240, 0.30), transparent 58%),
-    radial-gradient(760px 760px at 50% 120%, rgba(179, 168, 232, 0.26), transparent 62%),
+    radial-gradient(1000px 560px at 8% -12%, var(--glow-1), transparent 60%),
+    radial-gradient(880px 560px at 110% -4%, var(--glow-2), transparent 58%),
+    radial-gradient(760px 760px at 50% 120%, var(--glow-3), transparent 62%),
     var(--background);
   background-attachment: fixed;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Soft custom scrollbar */
@@ -43,11 +114,11 @@ body {
   background: transparent;
 }
 .scroll-soft::-webkit-scrollbar-thumb {
-  background: rgba(150, 135, 220, 0.28);
+  background: var(--scrollbar);
   border-radius: 999px;
 }
 .scroll-soft::-webkit-scrollbar-thumb:hover {
-  background: rgba(150, 135, 220, 0.45);
+  background: var(--scrollbar-hover);
 }
 
 /* Message entrance animation */
@@ -86,10 +157,10 @@ body {
 @keyframes glow {
   0%,
   100% {
-    filter: drop-shadow(0 0 6px rgba(167, 155, 231, 0.45));
+    filter: drop-shadow(0 0 6px var(--glow-logo-1));
   }
   50% {
-    filter: drop-shadow(0 0 14px rgba(196, 188, 240, 0.75));
+    filter: drop-shadow(0 0 14px var(--glow-logo-2));
   }
 }
 .animate-glow {
