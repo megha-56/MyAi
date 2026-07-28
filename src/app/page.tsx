@@ -99,9 +99,9 @@ export default function Chat() {
 
   return (
     <main className="flex min-h-full items-center justify-center p-4 sm:p-6">
-      <div className="flex h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-[28px] border border-[#e6e1f5] bg-white/80 shadow-[0_24px_60px_-24px_rgba(159,146,220,0.35)] backdrop-blur-2xl">
+      <div className="flex h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-[28px] border border-[#ddd3f4] bg-[#f5f1fd]/80 shadow-[0_24px_60px_-24px_rgba(159,146,220,0.40)] backdrop-blur-2xl">
         {/* Header */}
-        <header className="flex items-center gap-3 border-b border-[#efeaf9] bg-white/80 px-5 py-4 backdrop-blur-md">
+        <header className="flex items-center gap-3 border-b border-[#e2daf6] bg-[#efe9fb]/80 px-5 py-4 backdrop-blur-md">
           <Logo className="h-9 w-9 animate-glow" />
           <div className="leading-tight">
             <h1 className="bg-gradient-to-r from-[#8f81cf] to-[#b3a8e8] bg-clip-text text-lg font-bold text-transparent">
@@ -133,7 +133,7 @@ export default function Chat() {
                   <button
                     key={s}
                     onClick={() => sendMessage(s)}
-                    className="rounded-full border border-[#e6e1f5] bg-white px-4 py-2 text-sm text-[#6d63a0] transition hover:-translate-y-0.5 hover:border-[#c9c0ec] hover:bg-[#f6f4fc] hover:shadow-md"
+                    className="rounded-full border border-[#d7ccf0] bg-[#e7dffa] px-4 py-2 text-sm text-[#5f5591] transition hover:-translate-y-0.5 hover:border-[#c4b6ec] hover:bg-[#ded2f7] hover:shadow-md"
                   >
                     {s}
                   </button>
@@ -157,7 +157,7 @@ export default function Chat() {
                   className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold shadow-sm ${
                     isUser
                       ? 'bg-[#9f92dc] text-white'
-                      : 'border border-[#ece7f8] bg-white'
+                      : 'border border-[#ddd3f4] bg-[#eae2fb]'
                   }`}
                 >
                   {isUser ? 'You' : <Logo className="h-5 w-5" />}
@@ -167,7 +167,7 @@ export default function Chat() {
                   className={`max-w-[78%] whitespace-pre-wrap break-words px-4 py-2.5 text-[15px] leading-relaxed shadow-sm ${
                     isUser
                       ? 'rounded-3xl rounded-br-md bg-[#9f92dc] text-white'
-                      : 'rounded-3xl rounded-bl-md border border-[#ece7f8] bg-white text-[#453f63]'
+                      : 'rounded-3xl rounded-bl-md border border-[#ddd3f4] bg-[#eae2fb] text-[#453f63]'
                   }`}
                 >
                   {m.content}
@@ -178,10 +178,10 @@ export default function Chat() {
 
           {showTyping && (
             <div className="animate-rise flex items-end gap-2.5">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#ece7f8] bg-white shadow-sm">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#ddd3f4] bg-[#eae2fb] shadow-sm">
                 <Logo className="h-5 w-5" />
               </div>
-              <div className="rounded-3xl rounded-bl-md border border-[#ece7f8] bg-white px-4 py-2.5">
+              <div className="rounded-3xl rounded-bl-md border border-[#ddd3f4] bg-[#eae2fb] px-4 py-2.5">
                 <TypingDots />
               </div>
             </div>
@@ -189,8 +189,8 @@ export default function Chat() {
         </div>
 
         {/* Composer */}
-        <div className="border-t border-[#efeaf9] bg-white/80 px-4 py-4 backdrop-blur-md sm:px-6">
-          <div className="flex items-end gap-2 rounded-2xl border border-[#e6e1f5] bg-white p-1.5 shadow-sm focus-within:border-[#b3a8e8] focus-within:ring-2 focus-within:ring-[#e6e1f5]">
+        <div className="border-t border-[#e2daf6] bg-[#efe9fb]/80 px-4 py-4 backdrop-blur-md sm:px-6">
+          <div className="flex items-end gap-2 rounded-2xl border border-[#d7ccf0] bg-[#f2eefc] p-1.5 shadow-sm focus-within:border-[#b3a8e8] focus-within:ring-2 focus-within:ring-[#ddd3f4]">
             <textarea
               rows={1}
               value={input}
