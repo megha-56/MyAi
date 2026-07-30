@@ -187,6 +187,8 @@ export default function Chat() {
           {messages.map((m, i) => {
             const isUser = m.role === 'user';
             if (!isUser && m.content === '') return null;
+            const isStreaming =
+              !isUser && loading && i === messages.length - 1;
             return (
               <div
                 key={i}
@@ -213,6 +215,7 @@ export default function Chat() {
                   }`}
                 >
                   {m.content}
+                  {isStreaming && <span className="typing-caret" />}
                 </div>
               </div>
             );
