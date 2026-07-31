@@ -183,9 +183,10 @@ export default function Chat() {
         </header>
 
         {/* Messages */}
+        <div className="relative flex-1 overflow-hidden">
         <div
           ref={scrollRef}
-          className="scroll-soft flex-1 space-y-4 overflow-y-auto px-4 py-6 sm:px-6"
+          className="scroll-soft h-full space-y-4 overflow-y-auto px-4 py-6 sm:px-6"
         >
           {isEmpty && !loading && (
             <div className="flex h-full flex-col items-center justify-center text-center">
@@ -249,17 +250,19 @@ export default function Chat() {
               </div>
             );
           })}
+        </div>
 
-          {showTyping && (
-            <div className="animate-rise flex items-end gap-2.5">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] shadow-sm">
-                <Logo className="h-5 w-5" />
-              </div>
-              <div className="rounded-3xl rounded-bl-md border border-[var(--border-strong)] bg-[var(--surface)] px-4 py-2.5">
-                <TypingDots />
-              </div>
+        {/* Thinking indicator — pinned to the bottom-left corner */}
+        {showTyping && (
+          <div className="animate-rise pointer-events-none absolute bottom-3 left-4 flex items-end gap-2.5">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] shadow-sm">
+              <Logo className="h-5 w-5" />
             </div>
-          )}
+            <div className="rounded-3xl rounded-bl-md border border-[var(--border-strong)] bg-[var(--surface)] px-4 py-2.5 shadow-sm">
+              <TypingDots />
+            </div>
+          </div>
+        )}
         </div>
 
         {/* Composer */}
