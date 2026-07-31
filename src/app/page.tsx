@@ -72,7 +72,29 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(false);
+  const [revealCount, setRevealCount] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const lastIndex = messages.length - 1;
+  const last = messages[lastIndex];
+  const isTypingMsg = !!last && last.role === 'assistant';
+
+  // Reset the typewriter whenever a new message begins
+  useEffect(() => {
+    setRevealCount(0);
+  }, [messages.length]);
+
+  // Typewriter: reveal the latest assistant message one step at a time,
+  // independent of how fast the network delivers the text.
+  useEffect(() => {
+    if (!isTypingMsg) return;
+    const full = last.content.length;
+    if (revealCount >= full) return;
+    const id = setInterval(() => {
+      setRevealCount((c) => Math.min(c + 2, last.content.length));
+    }, 18);
+    return () => clearInterval(id);
+  }, [isTypingMsg, last?.content, revealCount]);
 
   // Initialise theme from saved preference or system setting
   useEffect(() => {
@@ -89,7 +111,7 @@ export default function Chat() {
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
-  }, [messages, loading]);
+  }, [messages, loading, revealCount]);
 
   const sendMessage = async (text?: string) => {
     const content = (text ?? input).trim();
@@ -186,9 +208,12 @@ export default function Chat() {
 
           {messages.map((m, i) => {
             const isUser = m.role === 'user';
-            if (!isUser && m.content === '') return null;
-            const isStreaming =
-              !isUser && loading && i === messages.length - 1;
+            const isLast = i === messages.length - 1;
+            const isTyping = !isUser && isLast;
+            const shown = isTyping ? m.content.slice(0, revealCount) : m.content;
+            // Nothing to show yet for the assistant — the dots handle that state
+            if (!isUser && shown === '') return null;
+            const showCaret = isTyping && (loading || revealCount < m.content.length);
             return (
               <div
                 key={i}
@@ -214,8 +239,8 @@ export default function Chat() {
                       : 'rounded-3xl rounded-bl-md border border-[var(--border-strong)] bg-[var(--surface)] text-[var(--text-strong)]'
                   }`}
                 >
-                  {m.content}
-                  {isStreaming && <span className="typing-caret" />}
+                  {shown}
+                  {showCaret && <span className="typing-caret" />}
                 </div>
               </div>
             );

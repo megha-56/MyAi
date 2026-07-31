@@ -165,13 +165,13 @@ body {
 }
 .typing-caret {
   display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  margin-left: 1px;
+  width: 3px;
+  height: 1.15em;
+  margin-left: 2px;
   vertical-align: text-bottom;
-  border-radius: 1px;
-  background: currentColor;
-  animation: caret-blink 1s steps(1) infinite;
+  border-radius: 2px;
+  background: var(--accent);
+  animation: caret-blink 0.9s ease-in-out infinite;
 }
 
 /* Gentle glow pulse for the logo */
