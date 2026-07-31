@@ -149,8 +149,12 @@ export default function Chat() {
   };
 
   const isEmpty = messages.length === 0;
+  const lastMsg = messages[messages.length - 1];
+  // Show the "thinking" dots the whole time the AI is working but hasn't
+  // produced any visible text yet — i.e. right after you send, while it thinks.
   const showTyping =
-    loading && (isEmpty || messages[messages.length - 1]?.content === '');
+    loading &&
+    (!lastMsg || lastMsg.role === 'user' || lastMsg.content === '');
 
   return (
     <main className="flex min-h-full items-center justify-center p-4 sm:p-6">
